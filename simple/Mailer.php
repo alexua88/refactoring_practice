@@ -1,23 +1,26 @@
 <?php
 
-class Mailer {
-    var $mailer;
-    var $mail;
-    function setMailer ( google_mailer $mailer ) {
+class Mailer
+{
+    public $mailer;
+    public $mail;
+    public function setMailer(google_mailer $mailer)
+    {
         $this->mailer = $mailer;
     }
 
-function compose($to, $from, $body, $subject)
-{
-    $this->mail = [
+    public function compose($to, $from, $body, $subject)
+    {
+        $this->mail = [
         'to' => $to,
         'from' => $from,
         'body' => $body,
         'subject' => $subject
     ];
-}
+    }
 
-    public function Send() {
+    public function Send()
+    {
         if (!empty($this->mail)) {
             return sprintf('Mail was sent to %s from %s with subject %s and message %s', $this->mail['to'], $this->mail['from'], $this->mail['subject'], $this->mail['body']);
         } else {
@@ -26,10 +29,12 @@ function compose($to, $from, $body, $subject)
     }
 }
 
-class google_mailer {
-    var $settings = [];
+class google_mailer
+{
+    public $settings = [];
 
-    function google_mailer($settings = null) {
+    public function google_mailer($settings = null)
+    {
         if ($settings) {
             $this->settings['host'] = $settings['host'];
             $this->settings['user'] = $settings['user'];
@@ -41,7 +46,8 @@ class google_mailer {
         $this->settings['host'] = $host;
     }
 
-    function set_user(string $User) {
+    public function set_user(string $User)
+    {
         $this->settings['user'] = $User;
     }
 
@@ -56,5 +62,3 @@ $mailer = new Mailer();
 $mailer->setMailer($googleMailer);
 $mailer->compose('test@mail.com', 'student@mail.com', 'Welcome', 'Welcome message');
 echo $mailer->Send();
-
-
