@@ -15,6 +15,9 @@ class Tester
         return 'testing';
     }
 }
+
+/** Что если добавить еще класс Designer с методом draw() **/
+
 class ProjectManagement
 {
     public function process($member)
